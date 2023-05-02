@@ -3,6 +3,8 @@
 
 #include <iostream>
 
+static int Joystick_ID = 0;
+
 class Vector{
 public:
 	Vector();
@@ -14,7 +16,7 @@ public:
 	void Negative();
 	void NegativeX();
 	void NegativeY();
-
+	
 	void operator+=(Vector);
 	void operator-=(Vector);
 	void operator*=(Vector);

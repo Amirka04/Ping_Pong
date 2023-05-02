@@ -12,6 +12,7 @@ GameObject::GameObject(){
 
 float GameObject::dWindow = 1;
 
+// инициализируем все элементы
 GameObject::GameObject(Vector Coordinate, Vector Size, Vector Speed){
 	this->Coordinate = Coordinate;
 	this->Size = Size;
@@ -24,6 +25,7 @@ GameObject::GameObject(Vector Coordinate, Vector Size, Vector Speed){
 	}
 }
 
+// инициализируем все элементы
 GameObject::GameObject(Vector Coordinate, Vector Size){
 	this->Coordinate = Coordinate;
 	this->Size = Size;
@@ -32,9 +34,10 @@ GameObject::GameObject(Vector Coordinate, Vector Size){
 	for(int i = 0; i < 4; i++){
 		vec[i] *= this->Size;
 		vec[i] += this->Coordinate;
-	}	
+	}
 }
 
+// Что бы наши фигуры рисовались адекватно
 void GameObject::SetDeltaWindow(float deltaWindow){
 	dWindow = deltaWindow;
 }
@@ -47,4 +50,12 @@ void GameObject::draw(){
 		glVertexPointer(2, GL_FLOAT, 0, vec);
 		glDrawArrays(GL_QUADS, 0, 4);
 	glDisableClientState(GL_VERTEX_ARRAY);
+}
+
+
+// установка позиции
+void GameObject::SetPosition(float x, float y){
+	Coordinate += {x,y};
+	for(int i = 0; i < 4; i++)
+		vec[i] += Vector(x,y);
 }

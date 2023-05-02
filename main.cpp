@@ -1,3 +1,16 @@
+/*
+АНЕКДОТ:
+
+Программист звонит в библиотеку.
+    — Здравствуйте, Катю можно?
+    — Она в архиве.
+    — Разархивируйте ее пожалуйста. Она мне срочно нужна!
+
+© https://anekdoty.ru/pro-programmistov/
+
+*/
+
+
 #include "SFML/Graphics.hpp"
 #include "GL/gl.h"
 
@@ -18,10 +31,8 @@ int main(){
     GameObject::SetDeltaWindow(dWindow);
 
 
-
-
-    player player1(Vector(0,0), Vector(0.01, 0.25), Vector(0.02,0));
-
+    player player1(Vector(-0.95,0), Vector(0.02, 0.25), Vector(0,0.006));
+    
 
     while(window.isOpen()){
         Event event;
@@ -29,14 +40,14 @@ int main(){
             if(event.type == Event::Closed)
                 window.close();
         }
-
+		
         glClearColor(0,0,0,0);
         glClear(GL_COLOR_BUFFER_BIT);
 
-
         // Весь процесс игры
-        player1.draw();
-        
+        player1.show();
+        // player2.draw();
+
 
 
         window.display();
@@ -45,4 +56,3 @@ int main(){
 
 
 }
-
