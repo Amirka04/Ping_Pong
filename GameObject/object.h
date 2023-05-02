@@ -11,16 +11,19 @@ class GameObject: public Vector{
 		Vector Coordinate{0,0};
 		Vector Speed{0,0};
 		Vector *vec = new Vector[]{ {1, 1}, {-1,1}, {-1,-1}, {1,-1} };
-
 		static float dWindow;
+
 
 	public:
 		GameObject();
 		GameObject(Vector, Vector, Vector);
-
+		GameObject(Vector, Vector);
 
 		static void SetDeltaWindow(float);
 		void draw();
+		
+		void SetPosition(Vector);
+		void SetPosition(float, float);
 };
 
 

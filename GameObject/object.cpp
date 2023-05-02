@@ -24,6 +24,16 @@ GameObject::GameObject(Vector Coordinate, Vector Size, Vector Speed){
 	}
 }
 
+GameObject::GameObject(Vector Coordinate, Vector Size){
+	this->Coordinate = Coordinate;
+	this->Size = Size;
+	this->Size.x *= dWindow;
+	
+	for(int i = 0; i < 4; i++){
+		vec[i] *= this->Size;
+		vec[i] += this->Coordinate;
+	}	
+}
 
 void GameObject::SetDeltaWindow(float deltaWindow){
 	dWindow = deltaWindow;
