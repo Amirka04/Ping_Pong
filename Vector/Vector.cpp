@@ -52,6 +52,7 @@ void Vector::NegativeY(){
 
 
 
+
 // перегружу оператор вывода для удобства
 std::ostream &operator<<(std::ostream &out, Vector &vector ){
 	out << "Vector(" << vector.x << ";" << vector.y << ")\n";
