@@ -10,8 +10,14 @@ class Ball: public GameObject{
         Ball(GameObject);
         Ball(Vector, Vector, Vector);
 
+        // Установка угла 
         void SetAngle(int);
+
+        // показ
         void show();
+
+        void sign_speedX();
+        void sign_speedY();
 
     protected:
         int angle = 0;

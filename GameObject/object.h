@@ -25,11 +25,14 @@ class GameObject: public Vector{
 		GameObject(Vector, Vector, Vector);
 		GameObject(Vector, Vector);
 
+		~GameObject();
+		// ===========================================================================================
 		// проверка, не вышел ли объект за пределы всех сторон экрана
 		bool IsLeft();
 		bool IsRight();
 		bool IsTop();
 		bool IsBottom();
+		// ===========================================================================================
 
 		// вернуть все значения в исходное состояние
 		void Reset();
@@ -37,7 +40,7 @@ class GameObject: public Vector{
 		// статическая ф-я - метод, для установки разницы окна
 		static void SetDeltaWindow(float);
 
-		// рисование 
+		// рисование
 		void draw();
 
 		// Расчёт столкновения между объектами

@@ -10,13 +10,12 @@
 
 player::player(){}
 
-player::player(Vector Coordinate, Vector Size, Vector Speed): gm(Coordinate, Size, Speed){}
+player::player(Vector Coordinate, Vector Size, Vector Speed): GameObject(Coordinate, Size, Speed){}
 
-player::player(Vector Coordinate, Vector Size): gm(Coordinate, Size){}
+player::player(Vector Coordinate, Vector Size): GameObject(Coordinate, Size){}
 
-player::player(GameObject u_gm): gm(u_gm){}
+player::player(GameObject u_gm): GameObject(u_gm){}
 // ==================================================================================================
-
 
 // проверка на подключённый джойстик
 bool player::isJoystickConnected(){
@@ -27,33 +26,26 @@ bool player::isJoystickConnected(){
 void player::show(){
 	int KeyUP = 0;
 	int KeyDown = 0;
-	int KeyReset = 0;
-
+	
 	using namespace sf;{
 		KeyUP = Keyboard::isKeyPressed(Keyboard::Key::W) || Keyboard::isKeyPressed(Keyboard::Key::Up);
 		KeyDown = Keyboard::isKeyPressed(Keyboard::Key::S) || Keyboard::isKeyPressed(Keyboard::Key::Down);
-		KeyReset = Keyboard::isKeyPressed(Keyboard::Key::R);
 	}
 
-	if( KeyDown && gm.IsBottom() )
-		gm.Move( Vector(gm.Speed.x, -gm.Speed.y) );
-	if( KeyUP && gm.IsTop() )
-		gm.Move( Vector(gm.Speed.x, gm.Speed.y) );
-	if(KeyReset)
-		gm.Reset();
-
+	if( KeyDown && !IsBottom() )
+		Move( Vector(Speed.x, -Speed.y) );
+	if( KeyUP && !IsTop() )
+		Move( Vector(Speed.x, Speed.y) );
+	
 	glColor3f(1,1,1);
-	gm.draw();
+	draw();
 }
 
-
-void BotGame(){	
+void player::ResetPlayer(){
+	Reset();
 }
 
-
-// получение объекта gm 
 GameObject player::GetObject(){
-	return gm;
+	return GameObject(Coordinate, Size, Speed);
 }
-
 

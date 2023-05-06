@@ -43,11 +43,11 @@ void Vector::Negative(){
 }
 // конвертация числа X в отрицательное число
 void Vector::NegativeX(){
-	x = -x;
+	x *= -1;
 }
 // конвертация числа Y в отрицательное число
 void Vector::NegativeY(){
-	y = -y;
+	y *= -1;
 }
 
 

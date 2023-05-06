@@ -41,6 +41,11 @@ GameObject::GameObject(Vector Coordinate, Vector Size){
 	}
 }
 
+// Деструктор для освобождения памяти
+GameObject::~GameObject(){
+	delete [] vec;
+}
+
 // Что бы наши фигуры рисовались адекватно
 void GameObject::SetDeltaWindow(float deltaWindow){
 	dWindow = deltaWindow;
@@ -91,22 +96,22 @@ void GameObject::Reset(){
 
 // Пересёк ли объект левую сторону
 bool GameObject::IsLeft(){
-	return Coordinate.x >= -1 + Size.x;
+	return Coordinate.x <= -1 + Size.x;
 }
 
 // Пересёк ли объект правую сторону
 bool GameObject::IsRight(){
-	return Coordinate.x <= 1 - Size.x;
+	return Coordinate.x >= 1 - Size.x;
 }
 
 // пересёк ли объект верхнюю сторону
 bool GameObject::IsTop(){
-	return Coordinate.y <= 1 - Size.y;;
+	return Coordinate.y >= 1 - Size.y;
 }
 
 // пересёк ли объект нижнюю сторону
 bool GameObject::IsBottom(){
-	return Coordinate.y >= -1 + Size.y;
+	return Coordinate.y <= -1 + Size.y;
 }
 
 
@@ -116,3 +121,4 @@ void GameObject::Move(Vector dCoord){
 		vec[i] += dCoord;
 	}
 }
+

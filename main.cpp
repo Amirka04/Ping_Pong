@@ -21,6 +21,8 @@
 using namespace sf;
 
 
+
+
 int main(){
     srand(time(0));
 
@@ -34,7 +36,9 @@ int main(){
 
     player player1(Vector(-.98,0), Vector(0.03, 0.25), Vector(0,0.0085));
     
-    Ball ball(Vector(0,0), Vector(0.05, 0.05), Vector(0,0));
+    Ball ball( Vector(0,0), Vector(0.06, 0.06), Vector(0.007,0.007) );
+    ball.SetAngle( 90 + rand() % 180 );
+
 
 
     while(window.isOpen()){
@@ -44,17 +48,26 @@ int main(){
                 window.close();
 
         }
-		
+
         glClearColor(0,0,0,0);
         glClear(GL_COLOR_BUFFER_BIT);
 
         // Весь процесс игры
         player1.show();
         ball.show();
-        
-        
 
+
+        if( ball.Collision( player1.GetObject() ) )
+            ball.sign_speedX();    
         
+        if( ball.IsLeft() ){
+            ball.Reset();
+            player1.Reset();
+            ball.SetAngle( 90 + rand() % 180 );
+        }
+
+
+
         window.display();
     }
 

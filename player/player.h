@@ -23,19 +23,14 @@ class player: public GameObject{
 
 		bool isJoystickConnected();
 		void show();
-
-		// что бы мы просчитывать коллизию
-		// нам нужно будет вернуть класс GameObject 
+		void ResetPlayer();
 		GameObject GetObject();
-		
-		// void Bot_ON();
-		
 		
 	protected:
 		bool Joystick_Connected = 0;
 		uint JoysticID = 0;
-		GameObject gm;
-		bool isBotON = 0;
+		// GameObject gm;
+		// bool isBotON = 0;
 };
 
 

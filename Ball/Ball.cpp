@@ -12,12 +12,27 @@ Ball::Ball(GameObject gm):GameObject(gm){}
 
 // Установка угла 
 void Ball::SetAngle(int angle){
-    this->angle = angle * M_PI;
+    this->angle = angle;
     Speed *= Vector( sin(angle), cos(angle) );
 }
 
+void Ball::sign_speedX(){
+    Speed.NegativeX();
+}
 
+void Ball::sign_speedY(){
+    Speed.NegativeY();
+}
+
+// показываем наш объект
 void Ball::show(){
 
+    if(IsRight() || IsLeft())
+        Speed.NegativeX();
+    if(IsBottom() || IsTop())
+        Speed.NegativeY();
+
+    // std::cout << Speed.x << " : " << Speed.y << std::endl;
+    Move( Speed );
     draw();
 }
