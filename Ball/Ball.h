@@ -16,14 +16,13 @@ class Ball: public GameObject{
         // показ
         void show();
 
+        // меняем знак у Speed по x и y
         void sign_speedX();
         void sign_speedY();
 
     protected:
         int angle = 0;
         
-        
-
 };
 
 

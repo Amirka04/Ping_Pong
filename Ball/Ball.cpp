@@ -26,13 +26,12 @@ void Ball::sign_speedY(){
 
 // показываем наш объект
 void Ball::show(){
-
     if(IsRight() || IsLeft())
         Speed.NegativeX();
     if(IsBottom() || IsTop())
         Speed.NegativeY();
 
-    // std::cout << Speed.x << " : " << Speed.y << std::endl;
+
     Move( Speed );
     draw();
 }

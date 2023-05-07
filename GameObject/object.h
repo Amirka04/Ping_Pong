@@ -4,7 +4,6 @@
 #include "../Vector/Vector.h"
 #include "GL/gl.h"
 
-class player;
 
 class GameObject: public Vector{
 	protected:
@@ -12,13 +11,12 @@ class GameObject: public Vector{
 		Vector Coordinate{0,0};				// Координаты
 		Vector DefaultCoordinate{0,0};		// Координаты которые мы поставили при инициализации обычных координат
 		Vector Speed{0,0};					// Скорость
+		Vector DefaultSpeed{0,0};			// Начальная скорость с которой всё начиналось
 		Vector *vec = new Vector[]{ {1, 1}, {-1,1}, {-1,-1}, {1,-1} };	// массив вершин для рисования
 
 		static float dWindow;				// Установка статического типа, для хранения отношения между высотой и длиной окна, что бы объекты не были шире 
 											// вместе с окном
 
-		/* Объявлю класс дружественным, что бы он имел доступ к его закрытым членам*/
-		friend player;
 
 	public:
 		GameObject();
@@ -33,6 +31,8 @@ class GameObject: public Vector{
 		bool IsTop();
 		bool IsBottom();
 		// ===========================================================================================
+
+		GameObject GetGameObject();
 
 		// вернуть все значения в исходное состояние
 		void Reset();
@@ -49,16 +49,12 @@ class GameObject: public Vector{
 		// движение персонажа
 		void Move(Vector);
 
+		// ф-я следования за объектом
+		void following(GameObject);
+
 		// указание позиции
 		void SetPosition(Vector);
 };
 
-
-template <class T>
-int number_sign(T num){
-	if(num <= 0)
-		return -1;
-	return 1;
-}
 
 #endif

@@ -22,6 +22,8 @@ GameObject::GameObject(Vector Coordinate, Vector Size, Vector Speed){
 	DefaultCoordinate = Coordinate;
 
 	this->Speed = Speed;
+	DefaultSpeed = this->Speed;
+
 	for(int i = 0; i < 4; i++){
 		vec[i] *= this->Size;
 		vec[i] += this->Coordinate;
@@ -64,8 +66,8 @@ void GameObject::draw(){
 bool GameObject::Collision(GameObject gm){
 
 	// растояние по оси X и по оси Y
-	float RustX = Coordinate.x - gm.Coordinate.x;
-	float RustY = Coordinate.y - gm.Coordinate.y;
+	float RustX = Coordinate.x - (gm.Coordinate.x + gm.Speed.x);
+	float RustY = Coordinate.y - (gm.Coordinate.y + gm.Speed.y);
 	
 	/*
 		Все объекты у нас равноудалены, а значит, что расстояние от одного края до центра, будет равно size/2
@@ -92,6 +94,7 @@ void GameObject::SetPosition(Vector DefCoord){
 // Вернуть прежнее значение
 void GameObject::Reset(){
 	SetPosition(DefaultCoordinate);
+	Speed = DefaultSpeed;
 }
 
 // Пересёк ли объект левую сторону
@@ -114,7 +117,6 @@ bool GameObject::IsBottom(){
 	return Coordinate.y <= -1 + Size.y;
 }
 
-
 void GameObject::Move(Vector dCoord){
 	Coordinate += dCoord;
 	for(int i = 0; i < 4; i++){
@@ -122,3 +124,15 @@ void GameObject::Move(Vector dCoord){
 	}
 }
 
+// вернём объект для получения информации
+GameObject GameObject::GetGameObject(){
+	return GameObject(Coordinate, Size, Speed);
+}
+
+// ф-я следования за объектом
+void GameObject::following(GameObject gms){
+	if( !IsTop() && Coordinate.y < gms.Coordinate.y )
+		Move( Vector(Speed.x, Speed.y) );
+	if( !IsBottom() && Coordinate.y > gms.Coordinate.y )
+		Move( Vector(Speed.x, -Speed.y) );		
+}

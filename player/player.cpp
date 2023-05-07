@@ -17,10 +17,6 @@ player::player(Vector Coordinate, Vector Size): GameObject(Coordinate, Size){}
 player::player(GameObject u_gm): GameObject(u_gm){}
 // ==================================================================================================
 
-// проверка на подключённый джойстик
-bool player::isJoystickConnected(){
-	return sf::Joystick::isConnected(Joystick_Connected);
-}
 
 // Функция которая покажет нам наш
 void player::show(){
@@ -32,10 +28,12 @@ void player::show(){
 		KeyDown = Keyboard::isKeyPressed(Keyboard::Key::S) || Keyboard::isKeyPressed(Keyboard::Key::Down);
 	}
 
-	if( KeyDown && !IsBottom() )
-		Move( Vector(Speed.x, -Speed.y) );
-	if( KeyUP && !IsTop() )
-		Move( Vector(Speed.x, Speed.y) );
+	if(!isBot){
+		if( KeyDown && !IsBottom() )
+			Move( Vector(Speed.x, -Speed.y) );
+		if( KeyUP && !IsTop() )
+			Move( Vector(Speed.x, Speed.y) );
+	}
 	
 	glColor3f(1,1,1);
 	draw();
@@ -45,7 +43,8 @@ void player::ResetPlayer(){
 	Reset();
 }
 
-GameObject player::GetObject(){
-	return GameObject(Coordinate, Size, Speed);
+void player::BOT(){
+	isBot = 1;
+	// draw();
+	// following(gms);
 }
-

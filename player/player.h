@@ -21,16 +21,13 @@ class player: public GameObject{
 		player(Vector, Vector);
 		player(GameObject);
 
-		bool isJoystickConnected();
 		void show();
 		void ResetPlayer();
-		GameObject GetObject();
-		
+
+		void BOT();
 	protected:
-		bool Joystick_Connected = 0;
-		uint JoysticID = 0;
-		// GameObject gm;
-		// bool isBotON = 0;
+		bool isBot = 0;
+		
 };
 
 
